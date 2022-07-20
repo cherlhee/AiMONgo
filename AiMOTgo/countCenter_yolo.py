@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+
+
 # Yolo 로드
 net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 classes = []

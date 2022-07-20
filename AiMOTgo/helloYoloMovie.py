@@ -77,12 +77,12 @@ output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
 colors = np.random.uniform(0, 255, size=(len(classes), 3))
 
 # -- 비디오 활성화
-# cap = cv2.VideoCapture(video_path)  # -- 웹캠 사용시 vedio_path를 0 으로 변경
+cap = cv2.VideoCapture(video_path)  # -- 웹캠 사용시 vedio_path를 0 으로 변경
 
 
 # cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv043.stream')
 # at chunan city;
-cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv023.stream')
+# cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv023.stream')
 
 if not cap.isOpened:
     print('--(!)Error opening video capture')

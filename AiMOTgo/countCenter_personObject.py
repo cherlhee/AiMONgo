@@ -55,6 +55,7 @@ for out in outs:
 
 
 
+
         # to detect all objects;
         # if confidence > 0.5:
 

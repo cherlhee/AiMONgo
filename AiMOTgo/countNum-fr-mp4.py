@@ -71,7 +71,7 @@ def detectAndDisplay(frame):
         if i in indexes:
             x, y, w, h = boxes[i]
             label = "{}: {:.2f}".format(classes[class_ids[i]], confidences[i] * 100)
-            print(i, label)
+            # print(i, label)
             color = colors[i]  # -- 경계 상자 컬러 설정 / 단일 생상 사용시 (255,255,255)사용(B,G,R)
             cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
             cv2.putText(img, label, (x, y - 5), font, 1, color, 1)
@@ -81,7 +81,7 @@ def detectAndDisplay(frame):
     end_time = time.time()
     process_time = end_time - start_time
     print("number of people: ", countPeople)
-    print("=== A frame took {:.3f} seconds".format(process_time))
+    # print("=== A frame took {:.3f} seconds".format(process_time))
     cv2.imshow("YOLO test", img)
 
 

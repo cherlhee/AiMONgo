@@ -74,7 +74,7 @@ def detectAndDisplay(frame):
             # print(i, label)
             color = colors[i]  # -- 경계 상자 컬러 설정 / 단일 생상 사용시 (255,255,255)사용(B,G,R)
             cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
-            cv2.putText(img, label, (x, y - 5), font, 1, color, 1)
+            # cv2.putText(img, label, (x, y - 5), font, 1, color, 1)
 
             countPeople += 1
 
@@ -97,8 +97,8 @@ net = cv2.dnn.readNet(model_file, config_file)
 
 
 # -- GPU 사용
-# net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-# net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 
 

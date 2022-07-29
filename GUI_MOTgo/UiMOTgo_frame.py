@@ -53,7 +53,7 @@ class MyGui:
         print('init countplus: %f'%(countPlus))
 
         root.title("WKIT Ltd")
-        root.geometry("1300x950+50+20")
+        root.geometry("1300x1000+20+20")
         root.resizable(True, True)
 
         self.__main__()
@@ -147,8 +147,6 @@ class MyGui:
 
 
 
-
-
     def funcCameraOff(self):
         img = cv2.cvtColor(src, cv2.COLOR_BGR2RGB)
         img = IMG.fromarray(img)
@@ -220,14 +218,27 @@ class MyGui:
         #///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
         # to make notebook;
-        ntbook = ttk.Notebook(root, width=1300, height=1000, padding=15)
-        ntbook.pack()
+        # ntbook = ttk.Notebook(root, width=1300, height=1000, padding=15)
+        ntbook = ttk.Notebook(root)
+        ntbook.pack(padx=10, pady=10)
 
-        frame_1stTab = Frame(root)
+        # frame_1stTab = Frame(root)
+        frame_1stTab = Frame(ntbook)
         ntbook.add(frame_1stTab, text="IMAGE DATA")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -236,14 +247,42 @@ class MyGui:
         ################################################################################################################
         # top frame
         ################################################################################################################
+        # topFrame= Frame(frame_1stTab, bg='skyblue3')
         topFrame= Frame(frame_1stTab)
-        topFrame.pack(side=TOP, fill=BOTH, expand=True)
+        # topFrame.pack(side=TOP, fill=BOTH, expand=True)
+        topFrame.pack(side=TOP, fill=BOTH)
+
+
+
+
+
+
+        ### to make images;
+        img= ImageTk.PhotoImage(file="image/wkit-logo.png")
+        #img= ImageTk.PhotoImage(file="lenna.png")
+        lblLogo= Label(topFrame, image= img)
+        lblLogo.image= img
+        lblLogo.pack(side=RIGHT)
+
+
+
 
         ##to make labels;
-        lblHi = Label(topFrame, text='WKIT AI CLUSTERING')
-        lblHi.config(font=('Courier', 13, 'bold'))
-        lblHi.pack()
+        lblHi = Label(topFrame, padx= 50, text='WKIT-AI-CLUSTERING')
+        lblHi.config(font=('Courier', 18, 'bold'))
+        lblHi.pack(side=RIGHT)
         #lblHi.grid(row=0, column=2, rowspan=2)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -255,7 +294,8 @@ class MyGui:
         # main frame
         ################################################################################################################
         mainFrame= Frame(frame_1stTab, padx=10, pady=10, bd=2, relief=RIDGE)
-        mainFrame.pack(side=TOP, fill=BOTH, expand=True)
+        # mainFrame.pack(side=TOP, fill=BOTH, expand=True)
+        mainFrame.pack(side=TOP)
         #leftFrame.pack_propagate(0)
 
 
@@ -270,7 +310,7 @@ class MyGui:
         ################################################################################################################
         mainLeftFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE)
         mainLeftFrame.pack(side=LEFT, fill=BOTH, expand=True)
-
+        # mainLeftFrame.pack(side=LEFT)
 
 
 
@@ -280,7 +320,7 @@ class MyGui:
         # main-left_top frame
         #------------------------------------------------------------------------------------------------------------------
         mainLeft_TopFrame= Frame(mainLeftFrame, width=50)
-        #mainLeft_TopFrame.pack(side=TOP, fill=BOTH, expand=True)
+        # mainLeft_TopFrame.pack(side=TOP, fill=BOTH, expand=True)
         mainLeft_TopFrame.pack(side=TOP)
 
 
@@ -335,11 +375,7 @@ class MyGui:
         # mainLEFT_BOTTOM frame
         # ---------------------------------------------------------------------------------------------------------------
         mainLeft_BottomFrame= Frame(mainLeftFrame)
-        mainLeft_BottomFrame.pack(side=BOTTOM)
-
-
-
-
+        mainLeft_BottomFrame.pack(side=TOP)
 
 
 
@@ -352,6 +388,9 @@ class MyGui:
         btnCameraOff = Button(mainLeft_BottomFrame, width=20, text='FILTER OFF', command=self.funcCameraOff)
         btnCameraOff.pack()
         #btnCameraOff.grid(row=2, column=1, pady=3)
+
+
+
 
 
 
@@ -383,6 +422,19 @@ class MyGui:
 
 
 
+
+
+        # ---------------------------------------------------------------------------------------------------------------
+        # MAIN MIDDLE_BOTTOM: frame
+        # ---------------------------------------------------------------------------------------------------------------
+        mainMiddle_BottomFrame= Frame(mainMiddleFrame,padx=10, pady=10, bd=2, relief=RIDGE)
+        #mainMiddleBottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
+        mainMiddle_BottomFrame.pack(side=BOTTOM)
+
+
+
+
+
         #---------------------------------------
         # to make images;
         #---------------------------------------
@@ -399,43 +451,6 @@ class MyGui:
 
 
 
-
-        # print(img_gray.ndim, img_gray.shape, img_gray.dtype)
-        # cv2.imwrite('lenna_gray.png', img_gray)
-        # img= ImageTk.PhotoImage(file="lenna.jpg")
-        # img= ImageTk.PhotoImage(file="lenna.png")
-
-
-        lblImg = Label(mainMiddle_TopFrame, image=imgcv)
-        lblImg.configure(image=imgcv)
-        lblImg.image = imgcv
-        lblImg.pack(side=LEFT)
-        #lblImg.grid(row=1, column=1, padx=10, pady=10)
-
-
-
-
-
-
-
-
-        # ---------------------------------------------------------------------------------------------------------------
-        # MAIN MIDDLE_BOTTOM: frame
-        # ---------------------------------------------------------------------------------------------------------------
-        mainMiddle_BottomFrame= Frame(mainMiddleFrame,padx=10, pady=10, bd=2, relief=RIDGE)
-        #mainMiddleBottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
-        mainMiddle_BottomFrame.pack(side=BOTTOM)
-
-
-
-
-
-
-
-        #
-        # btnCamera = Button(mainMiddleLeftFrame, width=20, text='FILTER ON', command=self.funcCamera)
-        # btnCamera.pack(side=TOP, padx=5, pady=5)
-        # #btnCamera.grid(row=2, column=0, pady=3)
 
 
 
@@ -469,22 +484,8 @@ class MyGui:
         # fig.add_subplot(111).plot(x,y)
 
 
-        canvas = FigureCanvasTkAgg(fig, master=mainMiddle_TopFrame)
-        #canvas.draw()
-        #canvas.get_tk_widget().grid(row=0, column=0, padx=15)
-        # canvas.get_tk_widget().grid(row=6, column=0, columnspan=2)
-
-        canvas.get_tk_widget().config(width=400, height=400)
-        canvas.get_tk_widget().pack(side=LEFT)
-        #line2.get_tk_widget().pack(side=LEFT, fill=BOTH)
 
 
-
-
-
-
-        # btnCameraOff = Button(mainMiddleRightFrame, width=20, text='FILTER OFF', command=self.funcCameraOff)
-        # btnCameraOff.pack(side=TOP, padx=5, pady=5)
 
 
 
@@ -603,7 +604,9 @@ class MyGui:
         # bottom frame
         ################################################################################################################
         bottomFrame= Frame(frame_1stTab)
-        bottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
+        # bottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
+        bottomFrame.pack(side=TOP)
+
 
         ##to make labels;
         lblHi = Label(bottomFrame, text='JCRADAR Ltd')
@@ -624,7 +627,7 @@ class MyGui:
         # FRAME-TWO
         #///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        frame_2ndTab = Frame(root)
+        frame_2ndTab = Frame(ntbook)
         ntbook.add(frame_2ndTab, text="VIDEO DATA")
 
 

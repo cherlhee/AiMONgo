@@ -57,8 +57,10 @@ class MyGui:
         print('init countplus: %f'%(countPlus))
 
         root.title("WKIT Ltd")
-        root.geometry("1400x1100+20+20")
+        root.geometry("1920x1080+20+20")
         root.resizable(True, True)
+        # root.resizable(False, False)
+
 
         self.__main__()
         print('hello, kitty')
@@ -326,8 +328,12 @@ class MyGui:
         ntbook = ttk.Notebook(root)
         ntbook.pack(padx=10)
 
-        # frame_1stTab = Frame(root)
-        frame_1stTab = Frame(ntbook)
+        frame_1stTab = Frame(root, width=1920, height=1080)
+        frame_1stTab.pack()
+        frame_1stTab.pack_propagate(False)
+
+
+        # frame_1stTab = Frame(ntbook)
         ntbook.add(frame_1stTab, text="IMAGE DATA")
 
 
@@ -354,7 +360,7 @@ class MyGui:
         topFrame= Frame(frame_1stTab, bg='skyblue3')
         # topFrame.pack(side=TOP, fill=BOTH, expand=True)
         topFrame.pack(side=TOP, fill=BOTH)
-
+        # topFrame.pack_propagate(False)
 
 
 
@@ -446,10 +452,10 @@ class MyGui:
         ################################################################################################################
         # main frame
         ################################################################################################################
-        mainFrame= Frame(frame_1stTab, padx=10, pady=10, bd=2, relief=RIDGE)
+        mainFrame= Frame(frame_1stTab, padx=10, pady=10, bd=2, relief=RIDGE, width=1920, height=800)
         # mainFrame.pack(side=TOP, fill=BOTH, expand=True)
         mainFrame.pack(side=TOP)
-        #leftFrame.pack_propagate(0)
+        mainFrame.pack_propagate(False)
 
 
 
@@ -461,9 +467,10 @@ class MyGui:
         ################################################################################################################
         # main-left frame
         ################################################################################################################
-        mainLeftFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE)
-        mainLeftFrame.pack(side=LEFT, fill=BOTH, expand=True)
+        mainLeftFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE, width=200, height=800)
+        mainLeftFrame.pack(side=LEFT)
         # mainLeftFrame.pack(side=LEFT)
+        mainLeftFrame.pack_propagate(False)
 
 
 
@@ -472,7 +479,7 @@ class MyGui:
         #---------------------------------------------------------------------------------------------------------------
         # main-left_top frame
         #------------------------------------------------------------------------------------------------------------------
-        mainLeft_TopFrame= Frame(mainLeftFrame, width=50)
+        mainLeft_TopFrame= Frame(mainLeftFrame)
         # mainLeft_TopFrame.pack(side=TOP, fill=BOTH, expand=True)
         mainLeft_TopFrame.pack(side=TOP)
 
@@ -485,7 +492,7 @@ class MyGui:
 
 
         # to make file list
-        lbxFile = Listbox(mainLeft_TopFrame, height=40)
+        lbxFile = Listbox(mainLeft_TopFrame, height=30)
         lbxFile.bind('<Double-1>', funclbxSelect)
         lbxFile.pack()
 
@@ -563,9 +570,9 @@ class MyGui:
         # main-middle frame
         ################################################################################################################
 
-        mainMiddleFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE)
+        mainMiddleFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE, width=1000, height=800)
         mainMiddleFrame.pack(side=LEFT, fill=BOTH, expand=True)
-        #leftFrame.pack_propagate(0)
+        mainLeftFrame.pack_propagate(False)
 
 
 
@@ -577,17 +584,6 @@ class MyGui:
         mainMiddle_TopFrame= Frame(mainMiddleFrame, padx=10, pady=10, bd=2, relief=RIDGE)
         #mainMiddleTopFrame.pack(side=TOP, fill=BOTH, expand=True)
         mainMiddle_TopFrame.pack(side=TOP)
-
-
-
-
-
-        # ---------------------------------------------------------------------------------------------------------------
-        # MAIN MIDDLE_BOTTOM: frame
-        # ---------------------------------------------------------------------------------------------------------------
-        mainMiddle_BottomFrame= Frame(mainMiddleFrame,padx=10, pady=10, bd=2, relief=RIDGE)
-        #mainMiddleBottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
-        mainMiddle_BottomFrame.pack(side=BOTTOM)
 
 
 
@@ -614,11 +610,11 @@ class MyGui:
 
 
         ### 2nd image;
-        lblOriginImg = Label(mainMiddle_BottomFrame, image=imgcv)
+        lblOriginImg = Label(mainMiddle_TopFrame, image=imgcv)
         # lblImg2.configure(image=imgcv)
         lblOriginImg.image = imgcv
         #lblImg2.grid(row=3, column=1, padx=10, pady=10, ipadx=20, ipady=20)
-        lblOriginImg.pack(side=LEFT)
+        lblOriginImg.pack(side=TOP)
 
 
 
@@ -660,7 +656,12 @@ class MyGui:
 
 
 
-
+        # ---------------------------------------------------------------------------------------------------------------
+        # MAIN MIDDLE_BOTTOM: frame
+        # ---------------------------------------------------------------------------------------------------------------
+        mainMiddle_BottomFrame= Frame(mainMiddleFrame,padx=10, pady=10, bd=2, relief=RIDGE)
+        #mainMiddleBottomFrame.pack(side=BOTTOM, fill=BOTH, expand=True)
+        mainMiddle_BottomFrame.pack(side=BOTTOM)
 
 
 
@@ -676,9 +677,9 @@ class MyGui:
         ################################################################################################################
         # main-right frame
         ################################################################################################################
-        mainRightFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE)
-        mainRightFrame.pack(side=RIGHT, fill=BOTH, expand=True)
-        #leftFrame.pack_propagate(0)
+        mainRightFrame= Frame(mainFrame, padx=10, pady=10, bd=2, relief=RIDGE, width=200, height=800)
+        mainRightFrame.pack(side=LEFT)
+        mainRightFrame.pack_propagate(False)
 
 
 

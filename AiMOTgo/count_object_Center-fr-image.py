@@ -1,17 +1,15 @@
-# to recognize only all persons;
-
-
+# to recognize all kinds of objects;
 import cv2
 import numpy as np
 
 
 
 # to load Yolo;
-net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+net = cv2.dnn.readNet("yolov3/yolov3.weights", "yolov3/yolov3.cfg")
 classes = []
 
 
-with open("coco.names", "r") as f:
+with open("yolov3/coco.names", "r") as f:
     classes = [line.strip() for line in f.readlines()]
 
 
@@ -21,24 +19,18 @@ colors = np.random.uniform(0, 255, size=(len(classes), 3))
 
 
 
-
-
-# to take images;
-# img = cv2.imread("data/people-4.jpg")
-img = cv2.imread("data/people-6.jpg")
+# 이미지 가져오기
+img = cv2.imread("image/people-4.jpg")
 img = cv2.resize(img, None, fx=0.4, fy=0.4)
 height, width, channels = img.shape
 
 
 
 
-# to detect objects
+# Detecting objects
 blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
 net.setInput(blob)
 outs = net.forward(output_layers)
-
-
-
 
 # 정보를 화면에 표시
 class_ids = []
@@ -51,18 +43,7 @@ for out in outs:
         scores = detection[5:]
         class_id = np.argmax(scores)
         confidence = scores[class_id]
-
-
-
-
-
-        # to detect all objects;
-        # if confidence > 0.5:
-
-
-
-        # to detect only persons
-        if class_id == 0 and confidence > 0.5:
+        if confidence > 0.5:
             # Object detected
             center_x = int(detection[0] * width)
             center_y = int(detection[1] * height)
